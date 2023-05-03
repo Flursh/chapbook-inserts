@@ -1,0 +1,10 @@
+:: modal : save [modal]
+
+[javascript]
+let saves = JSON.parse(localStorage.getItem(`saves-${engine.story.ifid() ? engine.story.ifid() : engine.story.name()}`)) || [];
+saves.forEach((save) => write(`<div class='row'>\>   ${save.name} : <button onClick="engine.state.saveToSlot('${save.name}', true)">save</button></div>`))
+[continued]
+<div class="row">
+    <input id="nameNewSave" placeholder='your save name' type="text" />
+    <button onClick="setup.createNewSave('nameNewSave')">new save</button>
+</div>

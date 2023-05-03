@@ -1,0 +1,8 @@
+@import './footer';
+
+#page {
+    padding: 1em 0;
+    & header, & article, & footer {
+        padding: .5em 2em;
+    }
+}

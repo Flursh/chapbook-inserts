@@ -1,0 +1,22 @@
+:: introduction
+
+# features : 
+
+### Enhanced links
+- [[enhanced links ->lk : basics]]
+- [[enhanced links : go ->lk : go]]
+- [[enhanced links :  reveal ->lk : reveal]]
+- [[enhanced links :  dialog ->lk : dialog]]
+
+
+### inventory actions
+- [[inventory basics ->inventory : basics]]
+- [[inventory UI ->inventory : UI]]
+- [[inventory & drop zones ->inventory : drop]]
+
+### visualizations
+- [[draw circle progress ->draw : circle]]
+- [[draw progress bar ->draw : progress]]
+
+### saves
+- [[save/load ->saves]]

@@ -1,0 +1,29 @@
+:: lk : basics
+
+Extended links allow you to change the state on click. Any props added aside from those reserved for the link type you choose will change the state when clicked.
+
+```ts
+interface Lk {
+    /** type of link to create */
+    lk: "go" | "reveal" | "dialog" | "closeDialog";
+    /** detination will be the passage to go to,
+     *  to show in the revealed passage,
+     *  or load in the dialog
+     **/
+    dest?: string;
+    /** only for reveal, if no dest provided, loads text */
+    text?: string;
+    /** text to display in the link */
+    label?: string;
+    /** any other property will update the state */
+    props: any;
+}
+```
+
+<div class="warning">
+
+Evaluation of state update data is done on passage load, meaning that if the state changes on the same passage without reload, the "old" calculation will be applied. For example, if you have `fire: 2` and you set on the link `fire: fire + 3`, it will be rendered as `fire: 5`.
+
+If before the link is clicked, on the same passage, you set `fire: 6` on some other action, when the user will click the link it will trigger `fire: 5` not `fire: 6 + 3`
+
+</div>

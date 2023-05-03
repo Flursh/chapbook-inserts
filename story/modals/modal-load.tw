@@ -1,0 +1,7 @@
+:: modal : load [modal]
+
+[javascript]
+let saves = JSON.parse(localStorage.getItem(`saves-${engine.story.ifid() ? engine.story.ifid() : engine.story.name()}`)) || [];
+saves.forEach((save) => write(`<div class='row'>\>   ${save.name} : <button onClick="engine.state.loadFromSlot('${save.name}', true)">load</button></div>`))
+if (saves.length === 0) write(`there is no save yet`)
+[continued]

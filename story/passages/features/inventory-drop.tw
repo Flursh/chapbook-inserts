@@ -1,0 +1,195 @@
+:: inventory : drop
+addToInventory:'brocoli'
+--
+
+drop zones can be applied to text or object (by wrapping them in the right element with the dataset). These will react to the drag events of items held in the inventory. The `highlighted` property makes the object more obviously interactible while disabling it only makes them react when hovered with an item. _this is customizable in css of course_
+
+```ts
+interface DropZone {
+    /** only accepts item for now */
+    drop: 'item';
+    /** true will add the css class "highlighted" to the result */
+    highlighted: boolean;
+    /** comma separated string with the name of all accepted items */
+    accept: string;
+    /** properties bound to a specific item
+     * should begin with the item name followed by the action
+     * or the state variable you want to use
+     */
+    /** removes the item on successful drop */
+    "item.remove": boolean;
+    /** open a dialog with a passage as its content on successful drop */
+    "item.dialog": string;
+    /** any other property can also be added and will try to update the state */
+    "item.fire": any;
+}
+```
+
+<div class="warning">
+
+like for `stateUpdates`, the order in which you define your properties matter. So if you open the dialog before updating the state, the open apassage will not have access to the updated values when it gets rendered. Try to setup your insert as : 
+
+```
+- drop: 'item'
+- highlighted: true / false
+- accept: 'comma,separated,list'
+- item.stateVariable: x
+- item.otherVariable: y
+- item.remove: true / false
+- item.dialog: 'passage name'
+```
+</div>
+
+### reacts on dagger & brocoli and opens dialog, highlighted ▾
+{
+    drop: 'item',
+    highlighted: true,
+    accept: 'brocoli,dagger',
+    "brocoli.remove": true,
+    "brocoli.dialog": 'inventory : dialog_brocoli',
+    "dagger.suspicious": 2,
+    "dagger.dialog": 'inventory : dialog_dagger',
+    label: 'give me dagger or brocoli stuff'
+}
+
+**from :**
+```js
+{_
+    drop: 'item',
+    highlighted: true,
+    accept: 'brocoli,dagger',
+    "brocoli.remove": true,
+    "brocoli.dialog": 'inventory : dialog_brocoli',
+    "dagger.suspicious": 2,
+    "dagger.dialog": 'inventory : dialog_dagger',
+    label: 'give me dagger or brocoli stuff'
+}
+```
+
+**to :**
+```html
+{
+    drop: 'item',
+    highlighted: true,
+    accept: 'brocoli,dagger',
+    "brocoli.remove": true,
+    "brocoli.dialog": 'inventory : dialog_brocoli',
+    "dagger.suspicious": 2,
+    "dagger.dialog": 'inventory : dialog_dagger',
+    label: 'give me dagger or brocoli stuff'
+}
+```
+
+### reacts on cephalopod & skull and opens dialog, not highlighted ▾
+{
+    drop: 'item',
+    highlighted: false,
+    accept: 'cephalopod,skull',
+    "skull.dialog": 'inventory : dialog_skull',
+    "cephalopod.dialog": 'inventory : dialog_cephalopod',
+    label: 'give me octopus or skull stuff'
+}
+
+**from :**
+
+```js
+{_
+    drop: 'item',
+    highlighted: false,
+    accept: 'cephalopd,skull',
+    "skull.dialog": 'inventory : dialog_skull',
+    "cephalopod.dialog": 'inventory : dialog_cephalopod',
+    label: 'give me octopus or skull stuff'
+}
+```
+
+**renders the following element :**
+
+```html
+{
+    drop: 'item',
+    highlighted: false,
+    accept: 'cephalopd,skull',
+    "skull.dialog": 'inventory : dialog_skull',
+    "cephalopod.dialog": 'inventory : dialog_cephalopod',
+    label: 'give me octopus or skull stuff'
+}
+```
+
+### creating items in passages
+Items can also be part of a passage, they can be dragged to the inventory to get an open slot. for example, consider this :
+{
+    item: 'brocoli',
+    label: 'delicious brocoli',
+    highlighted: true,
+    replace: `<span style='color:green'>you picked the brocoli</span>`
+}
+
+you can drag the label to you inventory and add a brocoli to it. On successful drop, the `replace` property will set its value as the object, making it undraggable.
+
+source: 
+```js
+{_
+    item: 'brocoli',
+    label: 'delicious brocoli',
+    highlighted: true,
+    replace: `<span style='color:green'>you picked the brocoli</span>`
+}
+```
+
+result:
+```html
+{
+    item: 'brocoli',
+    label: 'delicious brocoli',
+    highlighted: true,
+    replace: `<span style='color:green'>you picked the brocoli</span>`
+}
+```
+
+you can also use images to create the item
+
+{
+    item: 'dagger',
+    label: 'a wonderful dagger',
+    highlighted: true,
+    replace: '[empty]',
+    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
+}
+
+source: 
+```js
+{_
+    item: 'dagger',
+    label: 'a wonderful dagger',
+    highlighted: true,
+    replace: '[empty]',
+    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
+}
+```
+
+result: 
+```html
+{
+    item: 'dagger',
+    label: 'a wonderful dagger',
+    highlighted: true,
+    replace: '[empty]',
+    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
+}
+```
+
+:: inventory : dialog_brocoli
+_brocolisCount: engine.state.inventory.count('brocoli')
+--
+Oh man, i love brocolis! i will keep that one!\
+you have : {_brocolisCount} brocoli(s) left!
+
+:: inventory : dialog_dagger
+what a sharp dagger that is!
+
+:: inventory : dialog_cephalopod
+that's some slimy load of cuteness we have here!
+
+:: inventory : dialog_skull
+Well, they don't look too well

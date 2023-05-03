@@ -1,0 +1,48 @@
+:: inventory : basics
+
+The inventory is a set of utilities that allows for items to be dropped to dropzones and change the state.
+
+the inventory itself is an array in the state simply called `inventory`. This array is controlled using special methods and should not be updated directly to avoid functionnal issues.
+
+### engine inventory methods
+these are found under `engine.state.inventory`, for example `engine.state.inventory.init(7)` will initialize an inventory with 7 empty slots;
+```ts
+interface Inventory {
+    /** string separated by commas : stick,gold,dagger */
+    add(str: string): void;
+    /** string separated by commas : stick,gold,dagger */
+    remove(str: string): void;
+    /** single item name, removes all equal to string */
+    removeAll(str: string): void;
+    /** single item name, returns amount of occurences */
+    count(str: string): number;
+    /** single item name, returns boolean representing its occurence */
+    has(str: string): boolean;
+    /** initializes state.inventory with specified length */
+    init(length?: number): string[];
+}
+```
+
+### state methods
+The inventory uses two reserved state variables to make handling the inventory easier from the story. If you add `addToInventory: 'knife,cookie'`, as soon as the state is changed, it will try to parse its content through `engine.state.inventory.add('knife,cookie')` and reset `addToInventory` to an empty string.
+
+for example, using the extended link inserts : 
+
+_you see a nice round cookie laying there on the bathroom floor, you wonder, should you {
+    lk: 'reveal',
+    dest: 'take the cookie',
+    label: 'take the cookie',
+    addToInventory: 'cookie'
+}_
+
+```js
+{_
+    lk: 'reveal',
+    dest: 'take the cookie',
+    label: 'take the cookie',
+    addToInventory: 'cookie'
+}
+```
+
+:: take the cookie
+take the cookie? what a silly question, of course you should, and you just did!

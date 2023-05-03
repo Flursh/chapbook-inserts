@@ -1,0 +1,15 @@
+/** js highlighter */
+@import "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css";
+
+code,
+pre {
+    background-color: rgb(0, 10, 20, 0.07);
+    border-radius: 5px;
+}
+code {
+    padding: 5px;
+    font-size: 0.7em;
+}
+pre code {
+    background-color: transparent;
+}

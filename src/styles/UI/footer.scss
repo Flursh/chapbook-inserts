@@ -1,0 +1,19 @@
+#page footer {
+    &.has-content {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        & .right {
+            flex-grow: 0;
+            & .manage-story {
+                display: flex;
+                flex-direction: column;
+                gap: .5em;
+            }
+        }
+        & .left {
+            flex-grow: 0;
+        }
+    }
+}

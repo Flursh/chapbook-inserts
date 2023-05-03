@@ -1,0 +1,15 @@
+.dropzone {
+    display: inline-block;
+    transition: 0.3s;
+    &.highlighted {
+        background-color: var(--color-accent);
+        padding: 0 6px;
+        &.dragover {
+            background-color: var(--color-highlight);
+        }
+    }
+    &.dragover {
+        background-color: inherit;
+        filter: blur(0.8px);
+    }
+}

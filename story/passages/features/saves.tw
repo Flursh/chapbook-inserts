@@ -1,0 +1,29 @@
+:: saves
+Chapbook handles a single save file that updates as the story progresses. For testing or if you want to allow users to work with multiple save files, there are two methods added in the engine.
+
+```ts
+engine.state.saveToSlot( name: string, update: boolean = false) { ... }
+engine.state.loadFromSlot( name: string) { ... }
+```
+
+which we handle in the `:: UI : saves` passage with the following content : 
+
+```html
+[javascript]
+write(engine.story.passageNamed('UI : saves').source)
+[continue]
+```
+
+we also emit new events : `saved-slot`, `loaded-slot`, `save-error` we we use in the save `setup.ts` file : 
+
+```ts
+engine.event.on("saved-slot", (e) =>
+    engine.dialog.showDialogSuccess(`save [${e.name}] saved!`)
+);
+engine.event.on("loaded-slot", (e) =>
+    engine.dialog.showDialogSuccess(`save [${e.name}] loaded successfully!`)
+);
+engine.event.on("save-error", (e) => 
+    engine.dialog.showDialogError(e.error)
+);
+```

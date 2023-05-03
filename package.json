@@ -9,13 +9,14 @@
     "openTest": "open ./test.html",
     "test": "npm run compile && tweego -o ./test.html ./story -t --head=\"./story/head-content.txt\" && npm run openTest",
     "test:watch": "concurrently \"npm run compile:watch\" \"tweego -o ./test.html ./story --head=\"./story/head-content.txt\" -w -t\" \"npm run openTest\"",
-    "build:watch": "concurrently \"npm run compile:watch\" \"tweego -o ./test.html ./story --head=\"./story/head-content.txt\" -w\" \"npm run openStory\"",
+    "build:watch": "concurrently \"npm run compile:watch\" \"tweego -o ./index.html ./story --head=\"./story/head-content.txt\" -w\" \"npm run openStory\"",
     "build": "npm run compile && tweego -o ./index.html ./story --head=\"./story/head-content.txt\" && npm run openStory",
     "compile": "tsc && vite build",
     "compile:watch": "tsc && vite build --watch"
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
+    "sass": "^1.62.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.2"
   }

@@ -1,0 +1,16 @@
+@import './vars.scss';
+@import './dialog/dialog.scss';
+@import './dropzone/dropzone.scss';
+@import './inventory/inventory.scss';
+@import './draw/circle.scss';
+@import './UI/page.scss';
+
+@import './code/format.scss';
+
+body {
+    color: var(--color-dark);
+}
+
+[draggable="true"] {
+    cursor: grab;
+}

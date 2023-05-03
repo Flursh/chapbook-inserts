@@ -1,0 +1,18 @@
+:: intro : loop
+hello!
+{
+    lk: 'go',
+    dest: 'introduction',
+    addToInventory: 'cookie',
+    removeFromInventory: 'brocoli'
+}
+
+{
+    drop: 'item',
+    highlighted: true,
+    accept: 'brocoli,dagger',
+    "brocoli.suspicious": 5,
+    "brocoli.remove": true,
+    "dagger.suspicious": 9,
+    label: 'test me'
+}

@@ -1,0 +1,61 @@
+:: lk : dialog
+seenTheLight: false
+--
+
+opens the dialog on click and applies the stateUpdates like other `lk` inserts.
+
+example : 
+{
+    lk: 'dialog',
+    label: 'have you seen the light ?',
+    dest: 'modal : light',
+    seenTheLight: true
+}
+
+source: 
+```js
+{_
+    lk: 'dialog',
+    label: 'have you seen the light ?',
+    dest: 'modal : light',
+    seenTheLight: true
+}
+```
+
+resulting html
+```html
+{
+    lk: 'dialog',
+    label: 'have you seen the light ?',
+    dest: 'modal : light',
+    seenTheLight: true
+}
+```
+
+:: modal : light
+now you have 🌈
+
+you can also create links that will close the modal and update the state : 
+
+{
+    lk: 'closeDialog',
+    label: 'i hate light, i wish i could forget',
+    seenTheLight: false
+}
+
+source: 
+```js
+{_
+    lk: 'closeDialog',
+    label: 'i hate light, i wish i could forget',
+    seenTheLight: false
+}
+```
+
+```html
+{
+    lk: 'closeDialog',
+    label: 'i hate light, i wish i could forget',
+    seenTheLight: false
+}
+```

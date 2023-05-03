@@ -1,0 +1,63 @@
+:: inventory : UI
+
+<div class="warning">
+
+The components use HTML5 native drag/drop implementation. It works on all modern desktop browsers but some mobile browsers do not support it yet (firefox mobile for example)
+
+</div>
+
+aside from the js extends and utilities required, you need to specify a UI passage item to be your inventory. On this page, we use the following passage `UI: inventory` with the content below.
+```html
+[javascript]
+write(engine.story.passageNamed('UI : inventory').source)
+[continue]
+```
+
+which generates : 
+```html
+[javascript]
+write(engine.render(engine.story.passageNamed('UI : inventory').source))
+[continue]
+```
+
+if you want to see it in the header or footer, simply set up your story with `config.footer.center = "{_ embed passage: 'UI : inventory'}";` for example;
+
+This component just visualizes le the content of the inventory array, in these examples above, the value of the `inventory` element is :
+```JSON
+[javascript]
+write(JSON.stringify(engine.state.get('inventory'), null, 2))
+[continue]
+```
+
+if you wish to use the same structure as here, you can easily modify the available items by changing the `items` map in the passage. the `items` map is used to match the name of your items (which should not have any special characters and ve unique in the inventory) and the string it should return and render. Your can change it with HTML elements with images for example : 
+```js
+let items = new Map([
+    ['note', '<img src="./assets/note.png" draggable="false"/>'],
+    ['knife', '<img src="./assets/knife.png" draggable="false"/>'],
+    ['potion', '<img src="./assets/potion.png" draggable="false"/>'],
+    ['dagger', '🗡️'],
+    ['cephalopod', '🐙'],
+    ['book', '<img src="./assets/book.png" draggable="false"/>']
+  ])
+```
+
+<div class="warning">
+
+  having images in a draggable parent can cause issues (especially on mobile). To go around it, you can create an `::after` pseudo element on the `.item` element that is covering the whole area so that the image is not acessible and therefore disables all possible actions (drag, long press, etc.) which can be a pain to deal with. _example below in sass_
+
+
+  ```scss
+  div.item {
+      position: relative;
+      &::after {
+          content: "";
+          z-index: 5;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+      }
+  }
+  ```
+</div>

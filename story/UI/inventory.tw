@@ -1,0 +1,23 @@
+:: UI : inventory
+<div class="inventory" id="inventory">
+[JavaScript]
+  let items = new Map([
+    ['dagger', '🗡️'],
+    ['cephalopod', '🐙'],
+    ['cookie', '🍪'],
+    ['brocoli', '🥦'],
+    ['skull', '💀'],
+  ]);
+
+  let inventoryList = engine.state.get(`inventory`);
+  inventoryList.forEach(item => {
+    let itemIcon = items.get(item);
+    if (!itemIcon && item!=='') {
+      console.error(`'${item}' is not defined in inventory passage map`);
+      write(`<div class='item' draggable="true" data-item='${item ? item : ''}' data-itemslot='true'>❌</div>`)
+    } else {
+      write(`<div class='item' draggable="true" data-item='${item ? item : ''}' data-itemslot='true'>${itemIcon ? itemIcon : ''}</div>`)
+    }
+  });
+[continued]
+</div>

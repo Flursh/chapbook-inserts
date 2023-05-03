@@ -1,0 +1,50 @@
+#dialog {
+    position: fixed;
+    overflow: visible;
+    font-size: 1.1rem;
+    max-width: 650px;
+
+    &:not([open]) {
+        display: none;
+    }
+
+    &::backdrop {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    & .dialog-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    & .close-modal {
+        all: unset;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--error-dark);
+        position: absolute;
+        height: 30px;
+        width: 30px;
+        border-radius: 50em;
+        right: -15px;
+        top: -15px;
+        border: var(--border);
+        &::after,
+        &::before {
+            content: "";
+            width: 16px;
+            height: 3px;
+            background-color: var(--color-light);
+            position: absolute;
+        }
+        &::before {
+            transform: rotate(45deg);
+        }
+        &::after {
+            transform: rotate(-45deg);
+        }
+    }
+}

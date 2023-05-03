@@ -1,0 +1,98 @@
+:: draw : progress
+one: Math.round(Math.random()*8) + 1
+two: Math.round(Math.random()*8) + 1
+three: Math.round(Math.random()*8) + 1
+--
+
+here are some progress circles at different scales :
+
+<div style='display:flex;flex-direction: column;align-items:center;justify-content:space-between;border: solid 2px #222;padding: 1em;'>
+
+<div style="text-align:center">
+default style progress is {one}/10 ▾
+
+{
+    draw: 'progressBar',
+    total: 10,
+    value: one,
+    color: '#F14',
+}
+</div>
+
+<div style="text-align:center">
+sparkly progress is {two}/10 ▾
+
+{
+    draw: 'progressBar',
+    total: 10,
+    value: two,
+    color: '#6AF',
+    filled: '✦',
+    empty: '✧'
+}
+</div>
+
+<div style="text-align:center">
+meh progress is {three}/10 ▾
+
+{
+    draw: 'progressBar',
+    total: 10,
+    value: three,
+    color: '#5D7',
+    filled: '😐',
+    empty: '🫥'
+}
+</div>
+</div>
+
+In this passage, the state variable `two:{two}` is set. now, we call the insert : 
+
+```js
+{_
+    draw: 'progressBar',
+    total: 10,
+    value: two,
+    color: '#6AF',
+    filled: '✦',
+    empty: '✧'
+}
+```
+
+which renders : 
+{
+    draw: 'progressBar',
+    total: 10,
+    value: two,
+    color: '#6AF',
+    filled: '✦',
+    empty: '✧'
+}
+
+This only renders the string, no html component, so if you want the following result for example : 
+<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
+wow : {
+    draw: 'progressBar',
+    total: 10,
+    value: two,
+    color: '#6AF',
+    filled: '✦',
+    empty: '✧'
+}
+</div>
+
+you can type in :
+```html
+[javascript]
+write(`<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
+wow : {_
+    draw: 'progressBar',
+    total: 10,
+    value: two,
+    color: '#6AF',
+    filled: '✦',
+    empty: '✧'
+}
+</div>`)
+[continue]
+```

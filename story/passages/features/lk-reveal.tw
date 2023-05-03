@@ -1,0 +1,43 @@
+:: lk : reveal
+shock: 0
+--
+
+```js
+{_
+    lk: 'reveal',
+    dest: 'some revelation',
+    shock: shock + 3,
+    eyebrows: 'raised'
+}
+```
+
+for example, here's one : 
+{
+    lk: 'reveal',
+    dest: 'some revelation',
+    shock: shock + 3,
+    eyebrows: 'raised'
+}
+
+which renders : 
+```html
+{
+    lk: 'reveal',
+    dest: 'some revelation',
+    shock: shock + 3,
+    eyebrows: 'raised'
+}
+```
+
+on click, the link will first check `engine.actions.stateUpdates['lk:reveal1']` which, in this case, holds the following javascript object :
+```
+{
+  "shock": 3,
+  "eyebrows": "raised"
+}
+```
+
+the object will be merged with the sate before loading the next passage.
+
+:: some revelation
+wow much revealed 🐕

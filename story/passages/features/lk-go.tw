@@ -1,0 +1,32 @@
+:: lk : go
+fire: 0
+--
+
+```js
+{_
+    lk: 'go',
+    dest: 'some heated passage',
+    fire: fire + 3,
+    eyebrows: false
+}
+```
+
+which renders : 
+```html
+{
+    lk: 'go',
+    dest: 'some heated passage',
+    fire: fire + 3,
+    eyebrows: false
+}
+```
+
+on click, the link will first check `engine.actions.stateUpdates['lk:basics0']` which, in this case, holds the following javascript object :
+```
+{
+  "fire": 3,
+  "eyebrows": false
+}
+```
+
+the object will be merged with the sate before loading the next passage.
