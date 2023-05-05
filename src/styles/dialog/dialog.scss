@@ -48,3 +48,21 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    #dialog .close-modal {
+        top: 0;
+        right: 0;
+        border-radius: 0;
+        border-top: none;
+        border-right: none
+    }
+}
+
+#dialog .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    min-width: 200px;
+}

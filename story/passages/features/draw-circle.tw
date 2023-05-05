@@ -6,7 +6,7 @@ three: Math.round(Math.random()*8) + 1
 
 here are some progress circles at different scales :
 
-<div style='display:flex;align-items:center;justify-content:space-between;border: solid 2px #222;padding: 1em;'>
+<div style='display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;border: solid 2px #222;padding: 1em;'>
 {
     draw: 'circle',
     total: 10,
@@ -33,7 +33,7 @@ here are some progress circles at different scales :
 }
 </div>
 
-In this passage, the state variabl `two:{two}` is set. now, we call the insert : 
+In this passage, the state variable `two:{two}` is set. now, we call the insert : 
 
 ```js
 {_

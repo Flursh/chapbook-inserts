@@ -97,7 +97,7 @@ export function createLink(dataType = "go", props: any) {
     } else if (dataType === "dialog") {
         if (Object.keys(changes).length > 0) {
             let stateUpdateName = setupUpdateState(changes);
-            return `<a href=javascript.void(0) data-dialog="load" data-cb-close-dialog='true' ${
+            return `<a href=javascript.void(0) data-dialog="load" ${
                 Object.keys(changes).length > 0
                     ? `data-stateupdate="${stateUpdateName}"`
                     : ""

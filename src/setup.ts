@@ -8,7 +8,7 @@ function affixScriptToHead(url: string, onloadFunction?: () => any) {
     newScript.src = url;
 }
 
-affixScriptToHead('http://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js', () => {
+affixScriptToHead('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js', () => {
     console.info('script loaded');
     hljs.configure({
         ignoreUnescapedHTML: true

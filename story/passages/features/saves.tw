@@ -14,6 +14,23 @@ write(engine.story.passageNamed('UI : saves').source)
 [continue]
 ```
 
+in which `:: modal : save` for holds : 
+
+```html
+[javascript]
+write(engine.story.passageNamed('modal : save').source)
+[continue]
+```
+
+and `:: modal : load` holds :
+
+```html
+[javascript]
+write(engine.story.passageNamed('modal : load').source)
+[continue]
+```
+
+### events
 we also emit new events : `saved-slot`, `loaded-slot`, `save-error` we we use in the save `setup.ts` file : 
 
 ```ts

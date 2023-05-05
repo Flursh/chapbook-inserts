@@ -17,3 +17,13 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    div#page > article {
+        padding-bottom: 7em;
+    }
+    #page footer.has-content {
+        position: fixed;
+        width: 100%;
+    }
+}
