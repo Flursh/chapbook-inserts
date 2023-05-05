@@ -9,23 +9,6 @@ engine.event.prependListener("dom-click", (e: HTMLElement) => {
     }
 });
 
-// emit passage-change event if the last trail item isn't the same as the previous one on state change
-engine.event.on("state-change", (e) => {
-    try {
-        if (
-            e.name === "trail" &&
-            e.previous?.slice(-1) !== e.value?.slice(-1)
-        ) {
-            engine.event.emit("passage-change", {
-                previous: e.previous?.slice(-1)?.join(""),
-                passage: e.value?.slice(-1)?.join(""),
-            });
-        }
-    } catch (error) {
-        console.warn(error);
-    }
-});
-
 // on passage-change check engine.actions.stateUpdates and cleanup changes from previous passage
 engine.event.on("passage-change", (e) => {
     console.info(`changed passage from: "${e.previous}" -> to: "${e.passage}"`);

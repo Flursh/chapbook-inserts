@@ -1,26 +1,53 @@
-function affixScriptToHead(url: string, onloadFunction?: () => any) {
-    const newScript = document.createElement("script");
-    newScript.onerror = (e:Event | string) => { throw new Error((typeof e === 'string') ? e : e.message) };
-    if (onloadFunction) {
-        newScript.onload = onloadFunction;
+// emit passage-change event if the last trail item isn't the same as the previous one on state change
+engine.event.on(
+    "state-change",
+    (e: { name: string; previous: any; value: any }) => {
+        try {
+            if (e.name === "trail" && e.previous.at(-1) !== e.value.at(-1)) {
+                engine.event.emit("passage-change", {
+                    previous: e.previous.at(-1),
+                    passage: e.value.at(-1),
+                });
+            }
+        } catch (error) {
+            console.warn(error);
+        }
     }
-    document.head.appendChild(newScript);
-    newScript.src = url;
+);
+
+// highlightjs
+function affixScriptToHead(url: string, onloadFunction?: () => any) {
+    try {
+        const newScript = document.createElement("script");
+        newScript.onerror = (e: Event | string) => {
+            throw new Error(typeof e === "string" ? e : e.message);
+        };
+        if (onloadFunction) {
+            newScript.onload = onloadFunction;
+        }
+        document.head.appendChild(newScript);
+        newScript.src = url;
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-affixScriptToHead('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js', () => {
-    console.info('script loaded');
-    hljs.configure({
-        ignoreUnescapedHTML: true
-    })
-    hljs.highlightAll();
-})
+affixScriptToHead(
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
+    () => {
+        console.info("script loaded");
+        hljs.configure({
+            ignoreUnescapedHTML: true,
+        });
+        hljs.highlightAll();
+    }
+);
 
 /** ugly implementation to load after passage render */
-engine.event.on('passage-change', () => {
+engine.event.on("passage-change", () => {
     setTimeout(() => {
-        document.querySelectorAll('#page pre code').forEach((el) => {
+        document.querySelectorAll("#page pre code").forEach((el) => {
             hljs.highlightElement(el);
-          });
-    }, 200)
-  });
+        });
+    }, 200);
+});

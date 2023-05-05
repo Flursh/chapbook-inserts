@@ -14,7 +14,7 @@ write(engine.story.passageNamed('UI : saves').source)
 [continue]
 ```
 
-in which `:: modal : save` for holds : 
+in which `:: modal : save` holds : 
 
 ```html
 [javascript]

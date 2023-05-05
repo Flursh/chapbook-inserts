@@ -116,6 +116,8 @@ like for `stateUpdates`, the order in which you define your properties matter. S
 }
 ```
 
+When a wrong item (not part of the accepted list) is dropped on the drop-zone, a warning is printed to the console and and event is emitted. If you want to have an action on it, check it on `engine.event.on('wrong-item-drop', (item) => ...)` where the item is the string in `data-item`
+
 ### creating items in passages
 Items can also be part of a passage, they can be dragged to the inventory to get an open slot. for example, consider this :
 {
@@ -149,6 +151,7 @@ result:
 
 you can also use images to create the item
 
+<div style="max-width:200px;margin:auto;text-align:center">
 {
     item: 'dagger',
     label: 'a wonderful dagger',
@@ -156,6 +159,7 @@ you can also use images to create the item
     replace: '[empty]',
     src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
 }
+</div>
 
 source: 
 ```js

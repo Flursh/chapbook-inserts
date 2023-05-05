@@ -35,17 +35,37 @@
         />
 	</line>
 </svg></div></div></div></form><!-- UUID://D674C58C-DEFA-4F70-B7A2-27942230C0FC// --><tw-storydata name="flursh - custom inserts" startnode="23" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="D674C58C-DEFA-4F70-B7A2-27942230C0FC" zoom="1" format="Chapbook" format-version="1.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css";:root{--color-dark: #1c110a;--color-light: #f1f4fd;--color-highlight: #f9d45c;--color-accent: #67deb2;--color-altaccent: #acd4f1;--border: 2px solid var(--color-dark);--success-light: #b1eec7;--success-dark: #215635;--error-light: #ebc1ca;--error-dark: #a4203c;--info-light: #cee8f8;--info-dark: #175881;--warning-light: #f8f3ce;--warning-light: #ca7702}#dialog{position:fixed;overflow:visible;font-size:1.1rem;max-width:650px}#dialog:not([open]){display:none}#dialog::backdrop{background-color:#00000080}#dialog .dialog-content{display:flex;flex-direction:column;align-items:center;justify-content:center}#dialog .close-modal{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;background-color:var(--error-dark);position:absolute;height:30px;width:30px;border-radius:50em;right:-15px;top:-15px;border:var(--border)}#dialog .close-modal:after,#dialog .close-modal:before{content:"";width:16px;height:3px;background-color:var(--color-light);position:absolute}#dialog .close-modal:before{transform:rotate(45deg)}#dialog .close-modal:after{transform:rotate(-45deg)}@media (max-width: 768px){#dialog .close-modal{top:0;right:0;border-radius:0;border-top:none;border-right:none}}#dialog .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1em;min-width:200px}.dropzone{display:inline-block;transition:.3s}.dropzone.highlighted{background-color:var(--color-accent);padding:0 6px}.dropzone.highlighted.dragover{background-color:var(--color-highlight)}.dropzone.dragover{background-color:inherit;filter:blur(.8px)}.item{position:relative;display:flex;justify-content:center;align-items:center}.item:after{content:"";z-index:5;position:absolute;width:100%;height:100%;top:0;left:0}.item.highlighted{background-color:var(--color-accent);padding:0 6px}.item.highlighted:hover{background-color:var(--color-highlight)}#inventory{max-width:250px;margin:auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:5px}#inventory .item{font-size:1.2rem;width:45px;height:45px;display:flex;align-items:center;justify-content:center;background-color:#eee;cursor:grab;position:relative}#inventory .item:after{content:"";z-index:5;position:absolute;width:100%;height:100%;top:0;left:0}.circle-progress{font-size:.8em}.circle-progress p{text-align:center}#page footer.has-content{position:sticky;bottom:0;left:0;background-color:#fff}#page footer.has-content .right{flex-grow:0}#page footer.has-content .right .manage-story{display:flex;flex-direction:column;gap:.5em}#page footer.has-content .left{flex-grow:0}@media (max-width: 768px){div#page>article{padding-bottom:7em}#page footer.has-content{position:fixed;width:100%}}#page{padding:1em 0}#page header,#page article,#page footer{padding:.5em 2em}code,pre{background-color:#000a1412;border-radius:5px}code{padding:5px;font-size:.7em}pre code{background-color:transparent}body{color:var(--color-dark)}[draggable=true]{cursor:grab}
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">function k(t, e) {
-  const a = document.createElement("script");
-  a.onerror = (n) => {
-    throw new Error(typeof n == "string" ? n : n.message);
-  }, e && (a.onload = e), document.head.appendChild(a), a.src = t;
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">engine.event.on(
+  "state-change",
+  (t) => {
+    try {
+      t.name === "trail" && t.previous.at(-1) !== t.value.at(-1) && engine.event.emit("passage-change", {
+        previous: t.previous.at(-1),
+        passage: t.value.at(-1)
+      });
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+);
+function k(t, e) {
+  try {
+    const a = document.createElement("script");
+    a.onerror = (n) => {
+      throw new Error(typeof n == "string" ? n : n.message);
+    }, e && (a.onload = e), document.head.appendChild(a), a.src = t;
+  } catch (a) {
+    console.error(a);
+  }
 }
-k("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js", () => {
-  console.info("script loaded"), hljs.configure({
-    ignoreUnescapedHTML: !0
-  }), hljs.highlightAll();
-});
+k(
+  "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
+  () => {
+    console.info("script loaded"), hljs.configure({
+      ignoreUnescapedHTML: !0
+    }), hljs.highlightAll();
+  }
+);
 engine.event.on("passage-change", () => {
   setTimeout(() => {
     document.querySelectorAll("#page pre code").forEach((t) => {
@@ -66,16 +86,16 @@ engine.event.addListener("state-change", () => {
 });
 window.addEventListener("dragenter", (t) => t.preventDefault());
 window.addEventListener("dragstart", (t) => {
-  var a, n, i, s, r, f, l, v;
+  var a, n, i, s, r, u, l, f;
   let e = t.target;
   typeof ((a = e.dataset) == null ? void 0 : a.item) == "string" && ((n = t.dataTransfer) == null || n.clearData(), (i = e.dataset) != null && i.itemslot ? (r = t.dataTransfer) == null || r.setData(
     "text/plain",
     `${e.dataset.item},${Array.from(
       ((s = e.parentElement) == null ? void 0 : s.children) || []
     ).indexOf(e)}`
-  ) : ((f = t.dataTransfer) == null || f.setData("text/plain", `${e.dataset.item},-1`), (l = e.dataset) != null && l.replace && (window.setup.activeDragItem = {
+  ) : ((u = t.dataTransfer) == null || u.setData("text/plain", `${e.dataset.item},-1`), (l = e.dataset) != null && l.replace && (window.setup.activeDragItem = {
     el: e,
-    replace: ((v = e.dataset) == null ? void 0 : v.replace) || "[nothing]"
+    replace: ((f = e.dataset) == null ? void 0 : f.replace) || "[nothing]"
   })), e.classList.add("dragging"));
 });
 window.addEventListener("dragend", (t) => {
@@ -99,24 +119,24 @@ function D() {
   window.setup.activeDragItem.el.parentElement.innerHTML = window.setup.activeDragItem.replace, delete window.setup.activeDragItem;
 }
 window.addEventListener("drop", (t) => {
-  var a, n, i, s, r, f;
+  var a, n, i, s, r, u;
   let e = t.target;
   if (e.classList.remove("dragover"), (a = e.dataset) != null && a.itemslot) {
     t.preventDefault();
     try {
-      let [l, v] = ((n = t.dataTransfer) == null ? void 0 : n.getData("text/plain").split(",")) || ["", "-1"], d = engine.state.get("inventory"), m = Array.from(
+      let [l, f] = ((n = t.dataTransfer) == null ? void 0 : n.getData("text/plain").split(",")) || ["", "-1"], d = engine.state.get("inventory"), m = Array.from(
         ((i = e.parentElement) == null ? void 0 : i.children) || []
       ).indexOf(e), c = d[m];
-      v === "-1" && c !== "" ? engine.state.inventory.add(l) && D() : (d[m] = l, d[Number(v)] = c, engine.state.set("inventory", [...d]), window.setup.activeDragItem && D());
+      f === "-1" && c !== "" ? engine.state.inventory.add(l) && D() : (d[m] = l, d[Number(f)] = c, engine.state.set("inventory", [...d]), window.setup.activeDragItem && D());
     } catch (l) {
       throw new Error(l);
     }
   } else if (e.dataset.itemdestination) {
     t.preventDefault();
     try {
-      let [l, v] = ((s = t.dataTransfer) == null ? void 0 : s.getData("text/plain").split(",")) || ["", "-1"], d = engine.actions.dropZoneActions[e.dataset.itemdestination];
-      if ((((f = (r = e.dataset) == null ? void 0 : r.destinationaccept) == null ? void 0 : f.split(",")) || []).indexOf(l) === -1)
-        console.warn(`"${l}" not supported in drop zone`);
+      let [l, f] = ((s = t.dataTransfer) == null ? void 0 : s.getData("text/plain").split(",")) || ["", "-1"], d = engine.actions.dropZoneActions[e.dataset.itemdestination];
+      if ((((u = (r = e.dataset) == null ? void 0 : r.destinationaccept) == null ? void 0 : u.split(",")) || []).indexOf(l) === -1)
+        console.warn(`"${l}" not supported in drop zone`), engine.event.emit("wrong-item-drop", l);
       else
         try {
           console.log(e.dataset.itemdestination), Object.keys(d).forEach((c) => {
@@ -130,7 +150,7 @@ window.addEventListener("drop", (t) => {
                   engine.state.set("inventory", [...g]);
                 } else if (d[c]) {
                   let g = engine.state.get("inventory");
-                  g[v] = "", console.log(g), engine.state.set("inventory", [...g]);
+                  g[f] = "", console.log(g), engine.state.set("inventory", [...g]);
                 }
               } else if (w === "dialog") {
                 let g = engine.story.passageNamed(
@@ -175,9 +195,9 @@ let o = document.createElement("dialog");
 o.id = "dialog";
 let b = document.createElement("button");
 b.className = "close-modal";
-let u = document.createElement("div");
-u.className = "dialog-content";
-o.prepend(b, u);
+let v = document.createElement("div");
+v.className = "dialog-content";
+o.prepend(b, v);
 document.body.prepend(o);
 b.addEventListener("click", () => o.close());
 o.addEventListener("close", () => {
@@ -194,19 +214,19 @@ const E = {
   ...engine.dialog,
   close: () => o.close(),
   showDialog: function(e, a = !1) {
-    u.innerHTML = `<div class='message'>${e}</div>${!a && "<button data-dialog='close'>close</button>"}`, o.open || o.showModal();
+    v.innerHTML = `<div class='message'>${e}</div>${!a && "<button data-dialog='close'>close</button>"}`, o.open || o.showModal();
   },
   showDialogError: function(e = { message: "unidentified error caught" }) {
-    o.classList.add("dialog-error"), u.innerHTML = `<div class='message'>${e.message}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
+    o.classList.add("dialog-error"), v.innerHTML = `<div class='message'>${e.message}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
   },
   showDialogInfo: function(e) {
-    o.classList.add("dialog-info"), u.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
+    o.classList.add("dialog-info"), v.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
   },
   showDialogSuccess: function(e) {
-    o.classList.add("dialog-success"), u.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
+    o.classList.add("dialog-success"), v.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
   },
   showDialogWarning: function(e) {
-    o.classList.add("dialog-warning"), u.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
+    o.classList.add("dialog-warning"), v.innerHTML = `<div class='message'>${e}</div><button data-dialog='close'>close</button>`, o.open || o.showModal();
   }
 }, M = {
   add: (t) => {
@@ -446,17 +466,6 @@ let N = {
 };
 engine.event.prependListener("dom-click", (t) => {
   t.dataset.stateupdate ? engine.actions.updateState(t.dataset.stateupdate) : console.log(t);
-});
-engine.event.on("state-change", (t) => {
-  var e, a, n, i, s, r;
-  try {
-    t.name === "trail" && ((e = t.previous) == null ? void 0 : e.slice(-1)) !== ((a = t.value) == null ? void 0 : a.slice(-1)) && engine.event.emit("passage-change", {
-      previous: (i = (n = t.previous) == null ? void 0 : n.slice(-1)) == null ? void 0 : i.join(""),
-      passage: (r = (s = t.value) == null ? void 0 : s.slice(-1)) == null ? void 0 : r.join("")
-    });
-  } catch (f) {
-    console.warn(f);
-  }
 });
 engine.event.on("passage-change", (t) => {
   console.info(`changed passage from: "${t.previous}" -> to: "${t.passage}"`);
@@ -824,6 +833,8 @@ like for `stateUpdates`, the order in which you define your properties matter. S
 }
 ```
 
+When a wrong item (not part of the accepted list) is dropped on the drop-zone, a warning is printed to the console and and event is emitted. If you want to have an action on it, check it on `engine.event.on(&#39;wrong-item-drop&#39;, (item) =&gt; ...)` where the item is the string in `data-item`
+
 ### creating items in passages
 Items can also be part of a passage, they can be dragged to the inventory to get an open slot. for example, consider this :
 {
@@ -857,6 +868,7 @@ result:
 
 you can also use images to create the item
 
+&lt;div style=&quot;max-width:200px;margin:auto;text-align:center&quot;&gt;
 {
     item: &#39;dagger&#39;,
     label: &#39;a wonderful dagger&#39;,
@@ -864,6 +876,7 @@ you can also use images to create the item
     replace: &#39;[empty]&#39;,
     src: &#39;https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png&#39;
 }
+&lt;/div&gt;
 
 source: 
 ```js
@@ -950,7 +963,7 @@ let items = new Map([
   ```
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="inventory : basics" tags="" position="475,225" size="100,100">The inventory is a set of utilities that allows for items to be dropped to dropzones and change the state.
 
-the inventory itself is an array in the state simply called `inventory`. This array is controlled using special methods and should not be updated directly to avoid functionnal issues.
+the inventory itself is an array in the state simply called `inventory`. This array is controlled using special methods and should not be updated directly to avoid functional issues.
 
 ### engine inventory methods
 these are found under `engine.state.inventory`, for example `engine.state.inventory.init(7)` will initialize an inventory with 7 empty slots;
@@ -962,9 +975,9 @@ interface Inventory {
     remove(str: string): void;
     /** single item name, removes all equal to string */
     removeAll(str: string): void;
-    /** single item name, returns amount of occurences */
+    /** single item name, returns amount of this item in the array */
     count(str: string): number;
-    /** single item name, returns boolean representing its occurence */
+    /** single item name, returns boolean for its presence in the inventory */
     has(str: string): boolean;
     /** initializes state.inventory with specified length */
     init(length?: number): string[];
@@ -979,7 +992,7 @@ for example, using the extended link inserts :
 _you see a nice round cookie laying there on the bathroom floor, you wonder, should you {
     lk: &#39;reveal&#39;,
     dest: &#39;take the cookie&#39;,
-    label: &#39;take the cookie&#39;,
+    label: &#39;take the cookie 🍪&#39;,
     addToInventory: &#39;cookie&#39;
 }_
 
@@ -990,7 +1003,7 @@ _you see a nice round cookie laying there on the bathroom floor, you wonder, sho
     label: &#39;take the cookie&#39;,
     addToInventory: &#39;cookie&#39;
 }
-```</tw-passagedata><tw-passagedata pid="15" name="take the cookie" tags="" position="600,225" size="100,100">take the cookie? what a silly question, of course you should, and you just did!</tw-passagedata><tw-passagedata pid="16" name="lk : basics" tags="" position="725,225" size="100,100">Extended links allow you to change the state on click. Any props added aside from those reserved for the link type you choose will change the state when clicked.
+```</tw-passagedata><tw-passagedata pid="15" name="take the cookie" tags="" position="600,225" size="100,100">take the cookie? what a silly question, of course you should, and you just did! Look into your inventory you lucky... you!</tw-passagedata><tw-passagedata pid="16" name="lk : basics" tags="" position="725,225" size="100,100">Extended links allow you to change the state on click. Any props added aside from those reserved for the link type you choose will change the state when clicked.
 
 ```ts
 interface Lk {
@@ -1155,7 +1168,7 @@ write(engine.story.passageNamed(&#39;UI : saves&#39;).source)
 [continue]
 ```
 
-in which `:: modal : save` for holds : 
+in which `:: modal : save` holds : 
 
 ```html
 [javascript]

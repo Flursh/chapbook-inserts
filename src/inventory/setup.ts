@@ -121,6 +121,7 @@ window.addEventListener("drop", (e) => {
                 target.dataset?.destinationaccept?.split(",") || [];
             if (destinationAccept.indexOf(item) === -1) {
                 console.warn(`"${item}" not supported in drop zone`);
+                engine.event.emit('wrong-item-drop', item);
             } else {
                 try {
                     console.log(target.dataset.itemdestination);
