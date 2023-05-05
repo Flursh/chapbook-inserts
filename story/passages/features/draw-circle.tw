@@ -3,8 +3,9 @@ one: Math.round(Math.random()*8) + 1
 two: Math.round(Math.random()*8) + 1
 three: Math.round(Math.random()*8) + 1
 --
+## draw : circle
 
-here are some progress circles at different scales :
+Here are some progress circles at different scales :
 
 <div style='display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;border: solid 2px #222;padding: 1em;'>
 {

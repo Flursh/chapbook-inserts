@@ -2,5 +2,5 @@
 <div class="manage-story">
     <button data-dialog="load" data-cb-dialog="modal : save">save</button>
     <button data-dialog="load" data-cb-dialog="modal : load">load</button>
-    <button onClick="engine.dialog.showDialogWarning('<div>are you sure you want to <button data-cb-restart=\'true\' style=\'margin: 0 7px\'>restart</button> ? it will erease all your unsaved progess</div>')">restart</button>
+    <button onClick="engine.dialog.showDialogWarning('<div style=\'margin-bottom:2em\'>are you sure you want to <button data-cb-restart=\'true\' style=\'margin: 0 7px\'>restart</button>? it will erase all your unsaved progess</div>')">restart</button>
 </div>

@@ -1,4 +1,5 @@
 :: inventory : UI
+## inventory : UI
 
 <div class="warning">
 
@@ -20,16 +21,16 @@ write(engine.render(engine.story.passageNamed('UI : inventory').source))
 [continue]
 ```
 
-if you want to see it in the header or footer, simply set up your story with `config.footer.center = "{_ embed passage: 'UI : inventory'}";` for example;
+If you want to see it in the header or footer, simply set up your story with `config.footer.center = "{_ embed passage: 'UI : inventory'}";` for example;
 
-This component just visualizes le the content of the inventory array, in these examples above, the value of the `inventory` element is :
+This component just renders the content of the inventory array, in these examples above the value of the `inventory` element is :
 ```JSON
 [javascript]
 write(JSON.stringify(engine.state.get('inventory'), null, 2))
 [continue]
 ```
 
-if you wish to use the same structure as here, you can easily modify the available items by changing the `items` map in the passage. the `items` map is used to match the name of your items (which should not have any special characters and ve unique in the inventory) and the string it should return and render. Your can change it with HTML elements with images for example : 
+If you wish to use the same structure as here, you can easily modify the available items by changing the `items` map in the passage. The `items` map is used to match the name of your items (which should not have any special characters and ve unique in the inventory) and the string it should return and render. Your can change it with HTML elements with images for example : 
 ```js
 let items = new Map([
     ['note', '<img src="./assets/note.png" draggable="false"/>'],
@@ -43,7 +44,7 @@ let items = new Map([
 
 <div class="warning">
 
-  having images in a draggable parent can cause issues (especially on mobile). To go around it, you can create an `::after` pseudo element on the `.item` element that is covering the whole area so that the image is not acessible and therefore disables all possible actions (drag, long press, etc.) which can be a pain to deal with. _example below in sass_
+  Having images in a draggable parent can cause issues (especially on mobile). To go around it, you can create an `::after` pseudo element on the `.item` element that is covering the whole area so that the image is not acessible and therefore disables all possible actions (drag, long press, etc.) which can be a pain to deal with. _example below in sass_
 
 
   ```scss

@@ -551,7 +551,7 @@ if (!engine.state.get("init")) {
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="UI : saves" tags="" position="225,100" size="100,100">&lt;div class=&quot;manage-story&quot;&gt;
     &lt;button data-dialog=&quot;load&quot; data-cb-dialog=&quot;modal : save&quot;&gt;save&lt;/button&gt;
     &lt;button data-dialog=&quot;load&quot; data-cb-dialog=&quot;modal : load&quot;&gt;load&lt;/button&gt;
-    &lt;button onClick=&quot;engine.dialog.showDialogWarning(&#39;&lt;div&gt;are you sure you want to &lt;button data-cb-restart=\&#39;true\&#39; style=\&#39;margin: 0 7px\&#39;&gt;restart&lt;/button&gt; ? it will erease all your unsaved progess&lt;/div&gt;&#39;)&quot;&gt;restart&lt;/button&gt;
+    &lt;button onClick=&quot;engine.dialog.showDialogWarning(&#39;&lt;div style=\&#39;margin-bottom:2em\&#39;&gt;are you sure you want to &lt;button data-cb-restart=\&#39;true\&#39; style=\&#39;margin: 0 7px\&#39;&gt;restart&lt;/button&gt;? it will erase all your unsaved progess&lt;/div&gt;&#39;)&quot;&gt;restart&lt;/button&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="3" name="UI : warning" tags="" position="350,100" size="100,100">_remove the underscore in `{_ ... }` when pasting a snippet_</tw-passagedata><tw-passagedata pid="4" name="modal : load" tags="modal" position="475,100" size="100,100">[javascript]
 let saves = JSON.parse(localStorage.getItem(`saves-${engine.story.ifid() ? engine.story.ifid() : engine.story.name()}`)) || [];
 saves.forEach((save) =&gt; write(`&lt;div class=&#39;row&#39;&gt;‣   ${save.name} : &lt;button onClick=&quot;engine.state.loadFromSlot(&#39;${save.name}&#39;, true)&quot;&gt;load&lt;/button&gt;&lt;/div&gt;`))
@@ -567,8 +567,9 @@ saves.forEach((save) =&gt; write(`&lt;div class=&#39;row&#39;&gt;‣   ${save.na
 two: Math.round(Math.random()*8) + 1
 three: Math.round(Math.random()*8) + 1
 --
+## draw : circle
 
-here are some progress circles at different scales :
+Here are some progress circles at different scales :
 
 &lt;div style=&#39;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;border: solid 2px #222;padding: 1em;&#39;&gt;
 {
@@ -624,8 +625,9 @@ which renders :
 two: Math.round(Math.random()*8) + 1
 three: Math.round(Math.random()*8) + 1
 --
+## draw : progress
 
-here are some progress bars with different values and `filled` and `empty` parameters
+Here are some progress bars with different values and `filled` and `empty` parameters
 
 &lt;div style=&#39;display:flex;flex-direction: column;align-items:center;justify-content:space-between;border: solid 2px #222;padding: 1em;&#39;&gt;
 
@@ -718,8 +720,9 @@ wow : {_
 [continue]
 ```</tw-passagedata><tw-passagedata pid="8" name="inventory : drop" tags="" position="975,100" size="100,100">addToInventory:&#39;brocoli&#39;
 --
+## inventory : Dropzones
 
-drop zones can be applied to text or object (by wrapping them in the right element with the dataset). These will react to the drag events of items held in the inventory. The `highlighted` property makes the object more obviously interactible while disabling it only makes them react when hovered with an item. _this is customizable in css of course_
+Drop zones can be applied to text or object (by wrapping them in the right element with the dataset). These will react to the drag events of items held in the inventory. The `highlighted` property makes the object more obviously interactable while disabling it only makes them react when hovered with an item. _this is customizable in css of course_
 
 ```ts
 interface DropZone {
@@ -744,7 +747,7 @@ interface DropZone {
 
 &lt;div class=&quot;warning&quot;&gt;
 
-like for `stateUpdates`, the order in which you define your properties matter. So if you open the dialog before updating the state, the open apassage will not have access to the updated values when it gets rendered. Try to setup your insert as : 
+Like for `stateUpdates`, the order in which you define your properties matter. So if you open the dialog before updating the state, the open apassage will not have access to the updated values when it gets rendered. Try to setup your insert as : 
 
 ```
 - drop: &#39;item&#39;
@@ -844,7 +847,7 @@ Items can also be part of a passage, they can be dragged to the inventory to get
     replace: `&lt;span style=&#39;color:green&#39;&gt;you picked the brocoli&lt;/span&gt;`
 }
 
-you can drag the label to you inventory and add a brocoli to it. On successful drop, the `replace` property will set its value as the object, making it undraggable.
+You can drag the label to you inventory and add a brocoli to it. On successful drop, the `replace` property will set its value as the object, making it undraggable.
 
 source: 
 ```js
@@ -866,7 +869,7 @@ result:
 }
 ```
 
-you can also use images to create the item
+You can also use images to create the item
 
 &lt;div style=&quot;max-width:200px;margin:auto;text-align:center&quot;&gt;
 {
@@ -901,7 +904,9 @@ result:
 ```</tw-passagedata><tw-passagedata pid="9" name="inventory : dialog_brocoli" tags="" position="1100,100" size="100,100">_brocolisCount: engine.state.inventory.count(&#39;brocoli&#39;)
 --
 Oh man, i love brocolis! i will keep that one!\
-you have : {_brocolisCount} brocoli(s) left!</tw-passagedata><tw-passagedata pid="10" name="inventory : dialog_dagger" tags="" position="1225,100" size="100,100">what a sharp dagger that is!</tw-passagedata><tw-passagedata pid="11" name="inventory : dialog_cephalopod" tags="" position="100,225" size="100,100">that&#39;s some slimy load of cuteness we have here!</tw-passagedata><tw-passagedata pid="12" name="inventory : dialog_skull" tags="" position="225,225" size="100,100">Urgh, they don&#39;t look too well</tw-passagedata><tw-passagedata pid="13" name="inventory : UI" tags="" position="350,225" size="100,100">&lt;div class=&quot;warning&quot;&gt;
+you have : {_brocolisCount} brocoli(s) left!</tw-passagedata><tw-passagedata pid="10" name="inventory : dialog_dagger" tags="" position="1225,100" size="100,100">what a sharp dagger that is!</tw-passagedata><tw-passagedata pid="11" name="inventory : dialog_cephalopod" tags="" position="100,225" size="100,100">that&#39;s some slimy load of cuteness we have here!</tw-passagedata><tw-passagedata pid="12" name="inventory : dialog_skull" tags="" position="225,225" size="100,100">Urgh, they don&#39;t look too well</tw-passagedata><tw-passagedata pid="13" name="inventory : UI" tags="" position="350,225" size="100,100">## inventory : UI
+
+&lt;div class=&quot;warning&quot;&gt;
 
 The components use HTML5 native drag/drop implementation. It works on all modern desktop browsers but some mobile browsers do not support it yet (firefox mobile for example)
 
@@ -921,16 +926,16 @@ write(engine.render(engine.story.passageNamed(&#39;UI : inventory&#39;).source))
 [continue]
 ```
 
-if you want to see it in the header or footer, simply set up your story with `config.footer.center = &quot;{_ embed passage: &#39;UI : inventory&#39;}&quot;;` for example;
+If you want to see it in the header or footer, simply set up your story with `config.footer.center = &quot;{_ embed passage: &#39;UI : inventory&#39;}&quot;;` for example;
 
-This component just visualizes le the content of the inventory array, in these examples above, the value of the `inventory` element is :
+This component just renders the content of the inventory array, in these examples above the value of the `inventory` element is :
 ```JSON
 [javascript]
 write(JSON.stringify(engine.state.get(&#39;inventory&#39;), null, 2))
 [continue]
 ```
 
-if you wish to use the same structure as here, you can easily modify the available items by changing the `items` map in the passage. the `items` map is used to match the name of your items (which should not have any special characters and ve unique in the inventory) and the string it should return and render. Your can change it with HTML elements with images for example : 
+If you wish to use the same structure as here, you can easily modify the available items by changing the `items` map in the passage. The `items` map is used to match the name of your items (which should not have any special characters and ve unique in the inventory) and the string it should return and render. Your can change it with HTML elements with images for example : 
 ```js
 let items = new Map([
     [&#39;note&#39;, &#39;&lt;img src=&quot;./assets/note.png&quot; draggable=&quot;false&quot;/&gt;&#39;],
@@ -944,7 +949,7 @@ let items = new Map([
 
 &lt;div class=&quot;warning&quot;&gt;
 
-  having images in a draggable parent can cause issues (especially on mobile). To go around it, you can create an `::after` pseudo element on the `.item` element that is covering the whole area so that the image is not acessible and therefore disables all possible actions (drag, long press, etc.) which can be a pain to deal with. _example below in sass_
+  Having images in a draggable parent can cause issues (especially on mobile). To go around it, you can create an `::after` pseudo element on the `.item` element that is covering the whole area so that the image is not acessible and therefore disables all possible actions (drag, long press, etc.) which can be a pain to deal with. _example below in sass_
 
 
   ```scss
@@ -961,12 +966,14 @@ let items = new Map([
       }
   }
   ```
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="inventory : basics" tags="" position="475,225" size="100,100">The inventory is a set of utilities that allows for items to be dropped to dropzones and change the state.
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="14" name="inventory : basics" tags="" position="475,225" size="100,100">## inventory : basics
 
-the inventory itself is an array in the state simply called `inventory`. This array is controlled using special methods and should not be updated directly to avoid functional issues.
+The inventory is a set of utilities that allows for items to be dropped to dropzones and change the state.
+
+The inventory itself is an array in the state simply called `inventory`. This array is controlled using special methods and should not be updated directly to avoid functional issues.
 
 ### engine inventory methods
-these are found under `engine.state.inventory`, for example `engine.state.inventory.init(7)` will initialize an inventory with 7 empty slots;
+These are found under `engine.state.inventory`, for example `engine.state.inventory.init(7)` will initialize an inventory with 7 empty slots;
 ```ts
 interface Inventory {
     /** string separated by commas : stick,gold,dagger */
@@ -1003,7 +1010,9 @@ _you see a nice round cookie laying there on the bathroom floor, you wonder, sho
     label: &#39;take the cookie&#39;,
     addToInventory: &#39;cookie&#39;
 }
-```</tw-passagedata><tw-passagedata pid="15" name="take the cookie" tags="" position="600,225" size="100,100">take the cookie? what a silly question, of course you should, and you just did! Look into your inventory you lucky... you!</tw-passagedata><tw-passagedata pid="16" name="lk : basics" tags="" position="725,225" size="100,100">Extended links allow you to change the state on click. Any props added aside from those reserved for the link type you choose will change the state when clicked.
+```</tw-passagedata><tw-passagedata pid="15" name="take the cookie" tags="" position="600,225" size="100,100">take the cookie? what a silly question, of course you should, and you just did! Look into your inventory you lucky... you!</tw-passagedata><tw-passagedata pid="16" name="lk : basics" tags="" position="725,225" size="100,100">## lk : basics
+
+Extended links allow you to change the state on click. Any props added aside from those reserved for the link type you choose will change the state when clicked.
 
 ```ts
 interface Lk {
@@ -1027,10 +1036,11 @@ interface Lk {
 
 Evaluation of state update data is done on passage load, meaning that if the state changes on the same passage without reload, the &quot;old&quot; calculation will be applied. For example, if you have `fire: 2` and you set on the link `fire: fire + 3`, it will be rendered as `fire: 5`.
 
-If before the link is clicked, on the same passage, you set `fire: 6` on some other action, when the user will click the link it will trigger `fire: 5` not `fire: 6 + 3`
+If before the link is clicked, on the same passage, you set `fire: 6` on some other action, when the user will click the link it will trigger `fire: 5`, the previous value, and not `fire: 6 + 3`
 
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="lk : dialog" tags="" position="850,225" size="100,100">seenTheLight: false
 --
+## lk : dialog
 
 opens the dialog on click and applies the stateUpdates like other `lk` inserts.
 
@@ -1087,6 +1097,7 @@ source:
 }
 ```</tw-passagedata><tw-passagedata pid="19" name="lk : go" tags="" position="1100,225" size="100,100">fire: 0
 --
+## lk : go
 
 ```js
 {_
@@ -1117,6 +1128,7 @@ on click, the link will first check `engine.actions.stateUpdates[&#39;lk:basics0
 
 the object will be merged with the sate before loading the next passage.</tw-passagedata><tw-passagedata pid="20" name="lk : reveal" tags="" position="1225,225" size="100,100">shock: 0
 --
+## lk : reveal
 
 ```js
 {_
@@ -1153,14 +1165,16 @@ on click, the link will first check `engine.actions.stateUpdates[&#39;lk:reveal1
 }
 ```
 
-the object will be merged with the sate before loading the next passage.</tw-passagedata><tw-passagedata pid="21" name="some revelation" tags="" position="100,350" size="100,100">wow much revealed 🐕</tw-passagedata><tw-passagedata pid="22" name="saves" tags="" position="225,350" size="100,100">Chapbook handles a single save file that updates as the story progresses. For testing or if you want to allow users to work with multiple save files, there are two methods added in the engine.
+the object will be merged with the sate before loading the next passage.</tw-passagedata><tw-passagedata pid="21" name="some revelation" tags="" position="100,350" size="100,100">wow much revealed 🐕</tw-passagedata><tw-passagedata pid="22" name="saves" tags="" position="225,350" size="100,100">## save / load
+
+Chapbook handles a single save file that updates as the story progresses. For testing or if you want to allow users to work with multiple save files, there are two methods added in the engine.
 
 ```ts
 engine.state.saveToSlot( name: string, update: boolean = false) { ... }
 engine.state.loadFromSlot( name: string) { ... }
 ```
 
-which we handle in the `:: UI : saves` passage with the following content : 
+Which we handle in the `:: UI : saves` passage with the following content : 
 
 ```html
 [javascript]
@@ -1185,7 +1199,7 @@ write(engine.story.passageNamed(&#39;modal : load&#39;).source)
 ```
 
 ### events
-we also emit new events : `saved-slot`, `loaded-slot`, `save-error` we we use in the save `setup.ts` file : 
+We also emit new events : `saved-slot`, `loaded-slot`, `save-error` that we use in the save `setup.ts` file : 
 
 ```ts
 engine.event.on(&quot;saved-slot&quot;, (e) =&gt;

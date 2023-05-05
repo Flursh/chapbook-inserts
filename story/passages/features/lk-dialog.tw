@@ -1,6 +1,7 @@
 :: lk : dialog
 seenTheLight: false
 --
+## lk : dialog
 
 opens the dialog on click and applies the stateUpdates like other `lk` inserts.
 

@@ -3,8 +3,9 @@ one: Math.round(Math.random()*8) + 1
 two: Math.round(Math.random()*8) + 1
 three: Math.round(Math.random()*8) + 1
 --
+## draw : progress
 
-here are some progress bars with different values and `filled` and `empty` parameters
+Here are some progress bars with different values and `filled` and `empty` parameters
 
 <div style='display:flex;flex-direction: column;align-items:center;justify-content:space-between;border: solid 2px #222;padding: 1em;'>
 
