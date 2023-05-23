@@ -1,0 +1,80 @@
+:: passage router
+
+## random passage router
+
+The passage router is more of a pattern than an actual new functionality. The idea is to have a passage that will :
+- create a new variable with an array from passages with a specific tag
+- **if it was already declared** -> get it from the state instead
+- **if the array is empty** -> load a default passage
+- select a random passage from the array and remove it from the array
+- update the state with the updated array
+- if a value was selected, load the selected passage
+
+So with this, you can just have a link that point to the router passage and that passage will handle the redirect to a passage at random from your list.
+
+<div class="warning">
+
+Note that, as you're pointing to the `passage router script` passage that will handle the redirect itself, it is added to the `trail`, meaning that if you allow to go back, it will return to the router and re-execute. If you need the back button to work, you have to remove the `passage router script` entry in the `trail` array from the state before loading the passage. This is what the snippet below does, so going back will not point back to the router, but the page that linked to the router.
+
+</div>
+
+Here's an example :
+
+[choices go]
+    [[passage router : script]]
+[continue]
+
+Which holds the following setup : 
+```js
+[javascript]
+write(':: passage router : script \n')
+write(engine.story.passageNamed('passage router : script').source)
+[continue]
+```
+and the reference passages are : 
+```
+[javascript]
+write(':: passage router : 1 [router_test]\n')
+write(engine.story.passageNamed('passage router : 1').source)
+write('\n\n:: passage router : 2 [router_test]\n')
+write(engine.story.passageNamed('passage router : 2').source)
+write('\n\n:: passage router : 3 [router_test]\n')
+write(engine.story.passageNamed('passage router : 3').source)
+write('\n\n:: passage router : default\n')
+write(engine.story.passageNamed('passage router : default').source)
+[continue]
+```
+
+:: passage router : script
+[javascript]
+const passages = 
+    Boolean(engine.state.get('routerPassages')) ?
+    engine.state.get('routerPassages') :
+    engine.story.passages()
+        .filter(passage => passage.tags.includes('router_test'))
+if (passages.length > 0) {
+    let selectedPassage = passages.splice(Math.floor(Math.random() * passages.length), 1)[0];
+    engine.state.set('routerPassages', [...passages]);
+    engine.state.set('trail', [...engine.state.get('trail').slice(0,-1), selectedPassage.name])
+    write(engine.render(selectedPassage.source))
+} else {
+    engine.state.set('trail', [...engine.state.get('trail').slice(0,-1), 'passage router : default'])
+    write(engine.render(engine.story.passageNamed('passage router : default').source))
+}
+[continue]
+
+:: passage router : 1 [router_test]
+hello
+[[passage router : script]]
+
+:: passage router : 2 [router_test]
+hallo
+[[passage router : script]]
+
+:: passage router : 3 [router_test]
+bonjour
+[[passage router : script]]
+
+:: passage router : default
+That's enough greetings
+[[passage router]]

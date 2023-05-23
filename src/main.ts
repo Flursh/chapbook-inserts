@@ -15,11 +15,12 @@ import "./saves/setup";
 // all extends
 import "./extends";
 
-config.header.transition.duration = '300ms';
+config.body.transition.duration = '200ms'
+config.header.transition.duration = '200ms';
 config.footer.center = "{embed passage: `UI : inventory`}";
 config.footer.right = "{embed passage: `UI : saves`}";
-config.header.center = "{embed passage: `UI : warning`}";
-config.footer.left = "{back link, label: 'Back'}"
+config.header.left= "[[⇢ main menu->introduction]]";
+config.footer.left = "<div class='nav'>{back link, label: '↩︎ Back'}</div>";
 if (!engine.state.get("init")) {
     let inventoryList = engine.state.inventory.init(10);
     inventoryList[0] = "cephalopod";

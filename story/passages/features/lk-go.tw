@@ -3,23 +3,17 @@ fire: 0
 --
 ## lk : go
 
+example, go to passage : { embed passage: 'lk : go - example' }
+
 ```js
-{_
-    lk: 'go',
-    dest: 'some heated passage',
-    fire: fire + 3,
-    eyebrows: false
-}
+[javascript]
+    write(engine.story.passageNamed('lk : go - example').source)
+[continue]
 ```
 
 which renders : 
 ```html
-{
-    lk: 'go',
-    dest: 'some heated passage',
-    fire: fire + 3,
-    eyebrows: false
-}
+{ embed passage: 'lk : go - example' }
 ```
 
 on click, the link will first check `engine.actions.stateUpdates['lk:basics0']` which, in this case, holds the following javascript object :
@@ -31,3 +25,11 @@ on click, the link will first check `engine.actions.stateUpdates['lk:basics0']` 
 ```
 
 the object will be merged with the sate before loading the next passage.
+
+:: lk : go - example
+{
+    lk: 'go',
+    dest: 'lk : reveal',
+    fire: fire + 3,
+    eyebrows: false
+}

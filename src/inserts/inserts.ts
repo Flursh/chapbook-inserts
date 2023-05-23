@@ -70,7 +70,8 @@ function setupUpdateState(changes: any) {
 }
 
 export function createLink(dataType = "go", props: any) {
-    let reservedKeys = ["dest", "label"];
+    let reservedKeys = ["dest", "label", "hidden"];
+
     const changes = Object.keys(props).reduce((acc, item) => {
         if (reservedKeys.indexOf(item) == -1) {
             return { ...acc, [item]: props[item] };
@@ -78,11 +79,12 @@ export function createLink(dataType = "go", props: any) {
             return acc;
         }
     }, {});
+    const hideLink = props.hidden ? 'style="display:none"' : "";
 
     if (dataType === "close-dialog") {
         if (Object.keys(changes).length > 0) {
             let stateUpdateName = setupUpdateState(changes);
-            return `<a href=javascript.void(0) data-dialog="close" data-cb-close-dialog='true' ${
+            return `<a href=javascript.void(0) ${hideLink} data-dialog="close" data-cb-close-dialog='true' ${
                 Object.keys(changes).length > 0
                     ? `data-stateupdate="${stateUpdateName}"`
                     : ""
@@ -90,14 +92,14 @@ export function createLink(dataType = "go", props: any) {
                 props.label ? props.label : props.dest
             }</a>`;
         } else {
-            return `<a href=javascript.void(0) data-dialog="close" data-cb-close-dialog='true' data-cb-${dataType}="${
+            return `<a href=javascript.void(0) ${hideLink} data-dialog="close" data-cb-close-dialog='true' data-cb-${dataType}="${
                 props.dest
             }">${props.label ? props.label : props.dest}</a>`;
         }
     } else if (dataType === "dialog") {
         if (Object.keys(changes).length > 0) {
             let stateUpdateName = setupUpdateState(changes);
-            return `<a href=javascript.void(0) data-dialog="load" ${
+            return `<a href=javascript.void(0) ${hideLink} data-dialog="load" ${
                 Object.keys(changes).length > 0
                     ? `data-stateupdate="${stateUpdateName}"`
                     : ""
@@ -105,7 +107,7 @@ export function createLink(dataType = "go", props: any) {
                 props.label ? props.label : props.dest
             }</a>`;
         } else {
-            return `<a href=javascript.void(0) data-dialog="load" data-cb-close-dialog='true' data-cb-${dataType}="${
+            return `<a href=javascript.void(0) ${hideLink} data-dialog="load" data-cb-close-dialog='true' data-cb-${dataType}="${
                 props.dest
             }">${props.label ? props.label : props.dest}</a>`;
         }
@@ -113,7 +115,7 @@ export function createLink(dataType = "go", props: any) {
 
     if (Object.keys(changes).length > 0) {
         let stateUpdateName = setupUpdateState(changes);
-        return `<a href=javascript.void(0) ${
+        return `<a href=javascript.void(0) ${hideLink} ${
             Object.keys(changes).length > 0
                 ? `data-stateupdate="${stateUpdateName}"`
                 : ""
@@ -121,7 +123,7 @@ export function createLink(dataType = "go", props: any) {
             props.label ? props.label : props.dest
         }</a>`;
     } else {
-        return `<a href=javascript.void(0) data-cb-${dataType}="${
+        return `<a href=javascript.void(0) ${hideLink} data-cb-${dataType}="${
             props.dest
         }">${props.label ? props.label : props.dest}</a>`;
     }
@@ -151,45 +153,57 @@ export function createDropZone(props: any) {
 export function createItem(item: string, props: any) {
     if (props.src) {
         return `<div>
-        <figure ${props.replace && 'data-replace="' + props.replace + '"'} class="item${props.highlighted && ' highlighted'}" data-item="${item}" draggable="true">
+        <figure ${
+            props.replace && 'data-replace="' + props.replace + '"'
+        } class="item${
+            props.highlighted && " highlighted"
+        }" data-item="${item}" draggable="true">
             <img src="${props.src}" alt="${props.label}"/>
         </figure>
-</div>`
+</div>`;
     } else {
         return `<div>
-    <div class="item${props.highlighted && ' highlighted'}" data-item="${item}" draggable="true" ${props.replace && 'data-replace="' + props.replace + '"'}>${props.label}</div>
-</div>`
+    <div class="item${
+        props.highlighted && " highlighted"
+    }" data-item="${item}" draggable="true" ${
+            props.replace && 'data-replace="' + props.replace + '"'
+        }>${props.label}</div>
+</div>`;
     }
 }
 
-export function obscureString(
-    str: string,
-    intensity: string | boolean = false,
+export function obscureString({
+    string,
+    characters = ["✦", "・"],
+    intensity = 0,
     shuffle = false,
-    blurry = 0
-) {
-    let res = str;
+    blurry = 0,
+} : {
+    string: string;
+    characters: string[];
+    intensity: number;
+    shuffle: boolean;
+    blurry: number;
+}) {
+    let res = string;
     if (shuffle) {
         res = res
             .split("")
             .sort(() => 0.5 - Math.random())
             .join("");
     }
-    if (intensity === "high") {
+    if (intensity && intensity > 0) {
         res = res
-            .split("")
-            .map((letter) => [letter, "✦", "・"][Math.round(Math.random() * 2)])
-            .join("");
-    } else if (intensity === "medium") {
-        res = res
-            .split("")
-            .map(
-                (letter) =>
-                    [letter, letter, letter, "✦", "・"][
-                        Math.round(Math.random() * 4)
-                    ]
-            )
-            .join("");
+        .split("")
+        .map((letter) => {
+            let rand = Math.round(Math.random() * intensity + 1);
+            if (rand > 1) {
+                return characters[Math.floor(Math.random() * characters.length)];
+            } else {
+                return letter;
+            }
+        })
+        .join("");
     }
     return `<span class='scramble' style='filter: blur(${blurry}px)'>${res}</span>`;
 }

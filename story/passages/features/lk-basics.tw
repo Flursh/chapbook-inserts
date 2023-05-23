@@ -16,6 +16,8 @@ interface Lk {
     text?: string;
     /** text to display in the link */
     label?: string;
+    /** should the link be hidden */
+    hidden?: boolean;
     /** any other property will update the state */
     props: any;
 }

@@ -1,0 +1,88 @@
+:: choices modifier
+fire: 7
+_example: "[[label -> passage name [ variable: value, otherVariable : existingVar + 5 ]]"
+--
+The choices modifier does the same as forks in chapbook but with a few additional features.
+
+The modifier is called with `[choices]` which, if you want the links to reveal the rest, can take the argument `reveal` lik `[choices reveal]`. If the `reveal` parameter is set, the link will be rendered as a `reval-passage` type link instead of a `go`.
+
+On click, if you chose reveal, the active choice link will me be moved out of the `choices` section and wrapped in a new empty `<div>`, then the choices will be hidden and the content appended.
+
+The `[choices]` modifier makes usage of the extended links with a custom syntax. The links inside can set additional data in the state. the syntax is : <br>` {_example} `.
+
+<div class="warning">
+
+Spaces before and after the `->` will be trimmed, so if you put them in or not doesn't matter really. The choices are also cleared of any `tabs`, `4 spaces` and `line returns` before being parsed, so feel free to use them to make it more readable.<br>
+_and don't rely on them for data as the will be removed_
+
+</div>
+
+It shows something like this : 
+{ embed passage: "choices modifier : example" }
+
+With a modifier like this 
+```markdown
+[javascript]
+write(engine.story.passageNamed('choices modifier : example').source)
+[continue]
+```
+
+rendering something like : 
+```html
+{ embed passage: "choices modifier : example" }
+```
+
+### usecase : dissapearing choices
+
+If you want to have choices that dissapear after they have been selected, you can use the `hidden` property of the `lk` insert to your advantage. take the following example : click on a link, then on "back" at the bottom on the page. The link is no longer available. Click on the remaining link and then on back, now the default link is displayed.
+
+{ embed passage: 'dissapearing choices' }
+
+Obtained with this setup : 
+```js
+[javascript]
+    write(engine.story.passageNamed('dissapearing choices').source)
+[continue]
+```
+
+rendering : 
+```html
+{ embed passage: 'dissapearing choices' }
+```
+
+:: dissapearing choices
+[javascript]
+if (!engine.state.get('visitedExample')) engine.state.set('visitedExample', '')
+[continue]
+
+[choices go]
+[[
+    draw : circle
+    -> draw : circle
+    [ 
+        hidden: visitedExample.indexOf('draw : circle') !== -1,
+        visitedExample: visitedExample + 'draw : circle|'
+    ]
+]]
+[[
+    draw : progress
+    -> draw : progress
+    [
+        hidden: visitedExample.indexOf('draw : progress') !== -1,
+        visitedExample: visitedExample + 'draw : progress|'
+    ]
+]]
+[[
+    default link
+    -> draw : progress
+    [
+        hidden: visitedExample.split('|').filter(Boolean).length < 2
+    ]
+]]
+[continue]
+
+:: choices modifier : example
+[choices reveal]
+    [[say you're sorry -> scene modifier : sorry [ fire : 4 ]]
+    [[defend yourself -> scene modifier : defend [ fire: fire + 4 ]]
+[continue]

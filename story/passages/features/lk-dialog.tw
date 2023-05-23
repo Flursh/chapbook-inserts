@@ -6,31 +6,18 @@ seenTheLight: false
 opens the dialog on click and applies the stateUpdates like other `lk` inserts.
 
 example : 
-{
-    lk: 'dialog',
-    label: 'have you seen the light ?',
-    dest: 'modal : light',
-    seenTheLight: true
-}
+{ embed passage: 'lk : dialog - example' }
 
 source: 
 ```js
-{_
-    lk: 'dialog',
-    label: 'have you seen the light ?',
-    dest: 'modal : light',
-    seenTheLight: true
-}
+[javascript]
+    write(engine.story.passageNamed('lk : dialog - example').source)
+[continue]
 ```
 
 resulting html
 ```html
-{
-    lk: 'dialog',
-    label: 'have you seen the light ?',
-    dest: 'modal : light',
-    seenTheLight: true
-}
+{ embed passage: 'lk : dialog - example' }
 ```
 
 :: modal : light
@@ -38,25 +25,30 @@ now you have 🌈
 
 you can also create links that will close the modal and update the state : 
 
-{
-    lk: 'closeDialog',
-    label: 'i hate light, i wish i could forget',
-    seenTheLight: false
-}
+{ embed passage : 'dialog : light - example'}
 
 source: 
 ```js
-{_
-    lk: 'closeDialog',
-    label: 'i hate light, i wish i could forget',
-    seenTheLight: false
-}
+[javascript]
+    write(engine.story.passageNamed('dialog : light - example').source)
+[continue]
 ```
 
 ```html
+{ embed passage : 'dialog : light - example'}
+```
+
+:: dialog : light - example
 {
     lk: 'closeDialog',
     label: 'i hate light, i wish i could forget',
     seenTheLight: false
 }
-```
+
+:: lk : dialog - example
+{
+    lk: 'dialog',
+    label: 'have you seen the light ?',
+    dest: 'modal : light',
+    seenTheLight: true
+}

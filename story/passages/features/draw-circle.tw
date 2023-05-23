@@ -37,18 +37,17 @@ Here are some progress circles at different scales :
 In this passage, the state variable `two:{two}` is set. now, we call the insert : 
 
 ```js
-{_
-    draw: 'circle',
-    total: 10,
-    value: two,
-    color: '#6AF',
-    label: 'scale = 0.5 (default)',
-    scale: 0.5
-}
+[javascript]
+    write(engine.story.passageNamed('draw : circle - example').source)
+[continue]
 ```
 
 which renders : 
 ```html
+{ embed passage : 'draw : circle - example'}
+```
+
+:: draw : circle - example
 {
     draw: 'circle',
     total: 10,
@@ -57,4 +56,3 @@ which renders :
     label: 'scale = 0.5 (default)',
     scale: 0.5
 }
-```

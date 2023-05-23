@@ -9,11 +9,23 @@
             & .manage-story {
                 display: flex;
                 flex-direction: column;
-                gap: .5em;
+                gap: 0.5em;
             }
         }
         & .left {
             flex-grow: 0;
+            & div {
+                height: 100%;
+            }
+            & .nav {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-content: space-around;
+                & a {
+                    text-align: center;
+                }
+            }
         }
     }
 }

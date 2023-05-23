@@ -103,14 +103,11 @@ export let item = {
         console.log(props);
 
         const handler = () => {
-            return createItem(
-                item,
-                props
-            );
+            return createItem(item, props);
         };
         return handler();
     },
-}
+};
 
 export let obscure = {
     // used as {obscure: 'string', intensity: 'high', scramble: true, blurry: 3}
@@ -120,12 +117,13 @@ export let obscure = {
         console.log(props);
 
         const handler = () => {
-            return obscureString(
-                string,
-                props.intensity,
-                props.shuffle,
-                props.blurry
-            );
+            return obscureString({
+                string: string,
+                intensity: props.intensity,
+                characters: props.characters,
+                shuffle: props.shuffle,
+                blurry: props.blurry
+            });
         };
 
         return handler();

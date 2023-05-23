@@ -1,4 +1,6 @@
 // emit passage-change event if the last trail item isn't the same as the previous one on state change
+import './modifiers/setup.ts'
+
 engine.event.on(
     "state-change",
     (e: { name: string; previous: any; value: any }) => {
@@ -47,6 +49,8 @@ affixScriptToHead(
 engine.event.on("passage-change", () => {
     setTimeout(() => {
         document.querySelectorAll("#page pre code").forEach((el) => {
+            let txt = el.textContent as string;
+            el.textContent = txt.trim();
             hljs.highlightElement(el);
         });
     }, 200);

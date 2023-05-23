@@ -14,6 +14,12 @@
 - [[inventory UI ->inventory : UI]]
 - [[inventory & drop zones ->inventory : drop]]
 
+### story utilities
+- [[scene modifier->scene modifier]]
+- [[choices modifier->choices modifier]]
+- [[passage router->passage router]]
+- [[obscure->obscure]]
+
 ### visualizations
 - [[draw circle progress ->draw : circle]]
 - [[draw progress bar ->draw : progress]]

@@ -42,7 +42,7 @@ meh progress is {three}/10 ▾
     value: three,
     color: '#5D7',
     filled: '😐',
-    empty: '🫥'
+    empty: '😶'
 }
 </div>
 </div>
@@ -50,17 +50,29 @@ meh progress is {three}/10 ▾
 In this passage, the state variable `two:{two}` is set. now, we call the insert : 
 
 ```js
-{_
-    draw: 'progressBar',
-    total: 10,
-    value: two,
-    color: '#6AF',
-    filled: '✦',
-    empty: '✧'
-}
+[javascript]
+    write(engine.story.passageNamed('draw : progress - example').source)
+[continue]
 ```
 
 which renders : 
+{ embed passage: 'draw : progress - example'}
+
+This only renders the string, no html component, so if you want the following result for example : 
+<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
+wow : { embed passage: 'draw : progress - example'}
+</div>
+
+you can type in :
+```html
+[javascript]
+write(`<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
+wow : ${engine.story.passageNamed('draw : progress - example').source}
+</div>`)
+[continue]
+```
+
+:: draw : progress - example
 {
     draw: 'progressBar',
     total: 10,
@@ -69,31 +81,3 @@ which renders :
     filled: '✦',
     empty: '✧'
 }
-
-This only renders the string, no html component, so if you want the following result for example : 
-<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
-wow : {
-    draw: 'progressBar',
-    total: 10,
-    value: two,
-    color: '#6AF',
-    filled: '✦',
-    empty: '✧'
-}
-</div>
-
-you can type in :
-```html
-[javascript]
-write(`<div style="font-size:1.4em;color:teal;padding:1em;border: solid teal 2px">
-wow : {_
-    draw: 'progressBar',
-    total: 10,
-    value: two,
-    color: '#6AF',
-    filled: '✦',
-    empty: '✧'
-}
-</div>`)
-[continue]
-```

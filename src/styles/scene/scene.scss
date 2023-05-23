@@ -1,0 +1,81 @@
+section.scene {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    & > div {
+        max-width: 80%;
+        width: fit-content;
+        background-color: white;
+        box-shadow: var(--box-shadow);
+        border: 1px solid rgba(0,0,0,0.1);
+        margin: 1em 0;
+        position: relative;
+        & p {
+            padding: 0 1em;
+        }
+        &.character::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px black solid;
+            top: -25px;
+            background-color: #fff;
+            background-size: cover;
+            background-position: center;
+        }
+        &.left {
+            justify-self: left;
+            &.character::after {
+                left: -25px;
+            }
+        }
+        &.right {
+            justify-self: right;
+            &.character::after {
+                right: -25px;
+            }
+        }
+        &.description {
+            width: 80%;
+            color: #888;
+            text-align: center;
+            font-style: italic;
+        }
+        &.aogaeru {
+            background-color: #DEF;
+            &::after {
+                background-image: url("https://static.wikia.nocookie.net/monstermovies/images/4/4a/9_aogaeru.jpg");
+            }
+            &.choice {
+                background-color: #FFC;
+                display: grid;
+                &::before {
+                    content: 'choice';
+                    font-size: .7em;
+                    padding: 0 10px;
+                    position: absolute;
+                    border-radius: 50em;
+                    top: -15px;
+                    justify-self: center;
+                    background-color: var(--color-highlight);
+                    border: 1px rgba(0,0,0,.2) solid;
+                }
+            }
+        }
+        &.yubaba {
+            background-color: #DFE;
+            &.tired::after {
+                background-image: url("https://static.wikia.nocookie.net/studio-ghibli/images/f/f8/Yubaba-0.jpg");
+            }
+            &.angry {
+                background-color: rgb(255, 237, 241);
+                &::after {
+                    box-shadow: 0 0 15px rgba(232, 15, 62, 0.5);
+                    background-image: url("https://sarahscoop.com/wp-content/uploads/2021/12/yubaba-witch.jpg");
+                }
+            }
+        }
+    }
+}

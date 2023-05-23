@@ -34,16 +34,21 @@ _you see a nice round cookie laying there on the bathroom floor, you wonder, sho
     dest: 'take the cookie',
     label: 'take the cookie 🍪',
     addToInventory: 'cookie'
-}_
+} ?_
 
 ```js
-{_
-    lk: 'reveal',
-    dest: 'take the cookie',
-    label: 'take the cookie',
-    addToInventory: 'cookie'
-}
+[javascript]
+    write(engine.story.passageNamed('inventory : basics - example').source)
+[continue]
 ```
 
 :: take the cookie
 take the cookie? what a silly question, of course you should, and you just did! Look into your inventory you lucky... you!
+
+:: inventory : basics - example
+{
+    lk: 'reveal',
+    dest: 'take the cookie',
+    label: 'take the cookie 🍪',
+    addToInventory: 'cookie'
+}

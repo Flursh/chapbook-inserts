@@ -42,146 +42,71 @@ Like for `stateUpdates`, the order in which you define your properties matter. S
 </div>
 
 ### reacts on dagger & brocoli and opens dialog, highlighted ▾
-{
-    drop: 'item',
-    highlighted: true,
-    accept: 'brocoli,dagger',
-    "brocoli.remove": true,
-    "brocoli.dialog": 'inventory : dialog_brocoli',
-    "dagger.suspicious": 2,
-    "dagger.dialog": 'inventory : dialog_dagger',
-    label: 'give me dagger or brocoli stuff'
-}
+{ embed passage: 'inventroy : drop - example_1' }
 
 **from :**
 ```js
-{_
-    drop: 'item',
-    highlighted: true,
-    accept: 'brocoli,dagger',
-    "brocoli.remove": true,
-    "brocoli.dialog": 'inventory : dialog_brocoli',
-    "dagger.suspicious": 2,
-    "dagger.dialog": 'inventory : dialog_dagger',
-    label: 'give me dagger or brocoli stuff'
-}
+[javascript]
+    write(engine.story.passageNamed('inventroy : drop - example_1').source)
+[continue]
 ```
 
 **to :**
 ```html
-{
-    drop: 'item',
-    highlighted: true,
-    accept: 'brocoli,dagger',
-    "brocoli.remove": true,
-    "brocoli.dialog": 'inventory : dialog_brocoli',
-    "dagger.suspicious": 2,
-    "dagger.dialog": 'inventory : dialog_dagger',
-    label: 'give me dagger or brocoli stuff'
-}
+{ embed passage: 'inventroy : drop - example_1' }
 ```
 
 ### reacts on cephalopod & skull and opens dialog, not highlighted ▾
-{
-    drop: 'item',
-    highlighted: false,
-    accept: 'cephalopod,skull',
-    "skull.dialog": 'inventory : dialog_skull',
-    "cephalopod.dialog": 'inventory : dialog_cephalopod',
-    label: 'give me octopus or skull stuff'
-}
+{ embed passage: 'inventroy : drop - example_2' }
 
 **from :**
 
 ```js
-{_
-    drop: 'item',
-    highlighted: false,
-    accept: 'cephalopd,skull',
-    "skull.dialog": 'inventory : dialog_skull',
-    "cephalopod.dialog": 'inventory : dialog_cephalopod',
-    label: 'give me octopus or skull stuff'
-}
+[javascript]
+    write(engine.story.passageNamed('inventroy : drop - example_2').source)
+[continue]
 ```
 
 **renders the following element :**
 
 ```html
-{
-    drop: 'item',
-    highlighted: false,
-    accept: 'cephalopd,skull',
-    "skull.dialog": 'inventory : dialog_skull',
-    "cephalopod.dialog": 'inventory : dialog_cephalopod',
-    label: 'give me octopus or skull stuff'
-}
+{ embed passage: 'inventroy : drop - example_2' }
 ```
 
 When a wrong item (not part of the accepted list) is dropped on the drop-zone, a warning is printed to the console and and event is emitted. If you want to have an action on it, check it on `engine.event.on('wrong-item-drop', (item) => ...)` where the item is the string in `data-item`
 
 ### creating items in passages
 Items can also be part of a passage, they can be dragged to the inventory to get an open slot. for example, consider this :
-{
-    item: 'brocoli',
-    label: 'delicious brocoli',
-    highlighted: true,
-    replace: `<span style='color:green'>you picked the brocoli</span>`
-}
+{ embed passage: 'inventroy : drop - example_3' }
 
 You can drag the label to you inventory and add a brocoli to it. On successful drop, the `replace` property will set its value as the object, making it undraggable.
 
 source: 
 ```js
-{_
-    item: 'brocoli',
-    label: 'delicious brocoli',
-    highlighted: true,
-    replace: `<span style='color:green'>you picked the brocoli</span>`
-}
+[javascript]
+    write(engine.story.passageNamed('inventroy : drop - example_3').source)
+[continue]
 ```
 
 result:
 ```html
-{
-    item: 'brocoli',
-    label: 'delicious brocoli',
-    highlighted: true,
-    replace: `<span style='color:green'>you picked the brocoli</span>`
-}
+{ embed passage: 'inventroy : drop - example_3' }
 ```
 
 You can also use images to create the item
 
-<div style="max-width:200px;margin:auto;text-align:center">
-{
-    item: 'dagger',
-    label: 'a wonderful dagger',
-    highlighted: true,
-    replace: '[empty]',
-    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
-}
-</div>
+{ embed passage: 'inventroy : drop - example_4' }
 
 source: 
 ```js
-{_
-    item: 'dagger',
-    label: 'a wonderful dagger',
-    highlighted: true,
-    replace: '[empty]',
-    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
-}
+[javascript]
+    write(engine.story.passageNamed('inventroy : drop - example_4').source)
+[continue]
 ```
 
 result: 
 ```html
-{
-    item: 'dagger',
-    label: 'a wonderful dagger',
-    highlighted: true,
-    replace: '[empty]',
-    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
-}
+{ embed passage: 'inventroy : drop - example_4' }
 ```
 
 :: inventory : dialog_brocoli
@@ -198,3 +123,44 @@ that's some slimy load of cuteness we have here!
 
 :: inventory : dialog_skull
 Urgh, they don't look too well
+
+:: inventroy : drop - example_1
+{
+    drop: 'item',
+    highlighted: true,
+    accept: 'brocoli,dagger',
+    "brocoli.remove": true,
+    "brocoli.dialog": 'inventory : dialog_brocoli',
+    "dagger.suspicious": 2,
+    "dagger.dialog": 'inventory : dialog_dagger',
+    label: 'give me dagger or brocoli stuff'
+}
+
+:: inventroy : drop - example_2
+{
+    drop: 'item',
+    highlighted: false,
+    accept: 'cephalopod,skull',
+    "skull.dialog": 'inventory : dialog_skull',
+    "cephalopod.dialog": 'inventory : dialog_cephalopod',
+    label: 'give me octopus or skull stuff'
+}
+
+:: inventroy : drop - example_3
+{
+    item: 'brocoli',
+    label: 'delicious brocoli',
+    highlighted: true,
+    replace: `<span style='color:green'>you picked the brocoli</span>`
+}
+
+:: inventroy : drop - example_4
+<div style="max-width:200px;margin:auto;text-align:center">
+{
+    item: 'dagger',
+    label: 'a wonderful dagger',
+    highlighted: true,
+    replace: '[empty]',
+    src: 'https://wiki.inferna.net/gameicons/items/weapons/dagger/dagger_01.png'
+}
+</div>

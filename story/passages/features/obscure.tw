@@ -1,0 +1,74 @@
+:: obscure
+
+## Obscure
+
+The obscure insert provides a way to mess up the display of a string. This is based on randomness, so sometimes the result will be different with the same settings. Also, the blur filter still allows for inspection or copy/paste of the section.
+
+definition : 
+```ts
+function obscureString(
+    str: string,
+    characters: string[] = ["✦", "・"],
+    intensity: number = 0,
+    shuffle = false,
+    blurry = 0
+)
+```
+
+- `str` is the string you want to scramble, it's the first argument after the `obscure` insert keyword
+- `characters` is an array of characters to replace the letters with, they will be selected at random
+- `intensity` is how much of the string we should replace with the characters by ratio of `1 / intensity + 1`, `0`is none, `1` is 50%, `2` is 66%, `3` is 75%, `4` is 80%, etc.
+- `shuffle` if set to `true` will mix up all characters within the string
+- `blurry` is the value of a `blur` css filter to apply in pixels. So `blurry:5` would render `filter: blur(5px)`
+
+### example : 
+{
+    embed passage: 'obscure : example'
+}
+
+reference : 
+```js
+[javascript]
+write(engine.story.passageNamed('obscure : example').source)
+[continue]
+```
+
+:: obscure : example
+
+#### remove letters
+- {
+    obscure: 'what a wonderful day today!',
+    shuffle: false,
+    intensity: 1
+}
+
+#### blur filter
+- {
+    obscure: 'what a wonderful day today!',
+    shuffle: false,
+    blurry: 3
+}
+
+#### shuffle letters
+- {
+    obscure: 'what a wonderful day today!',
+    shuffle: true,
+    blurry: 0
+}
+
+#### custom hidden characters
+- {
+    obscure: 'what a wonderful day today!',
+    shuffle: true,
+    intensity: 5,
+    characters: ['★','♥︎','✸','❖']
+}
+
+#### all in
+- {
+    obscure: 'what a wonderful day today!',
+    shuffle: true,
+    intensity: 3,
+    blurry: 3,
+    characters: ['★','♥︎','☽','❖']
+}

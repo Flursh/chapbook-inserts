@@ -1,12 +1,13 @@
 import dialogExtend from "./dialog/extend";
-import inventoryExtend from "./inventory/extend"
+import inventoryExtend from "./inventory/extend";
 import actionsExtend from "./actions/extend";
 import savesExtend from "./saves/extend";
 import { link, drop, playEffect, draw, item, obscure } from "./inserts/extend";
+import { sceneModifier, choicesModifier } from "./modifiers/extend";
 
-import './inserts/setup'
+import "./inserts/setup";
 
-engine.extend('1.2.3', () => {
+engine.extend("1.2.3", () => {
     engine.state = {
         ...engine.state,
         ...savesExtend,
@@ -21,6 +22,11 @@ engine.extend('1.2.3', () => {
         draw,
         item,
         obscure,
-        ...config.template.inserts
+        ...config.template.inserts,
+    ],
+    config.template.modifiers = [
+        sceneModifier,
+        choicesModifier,
+        ...config.template.modifiers
     ]
-})
+});

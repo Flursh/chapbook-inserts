@@ -4,30 +4,17 @@ shock: 0
 ## lk : reveal
 
 ```js
-{_
-    lk: 'reveal',
-    dest: 'some revelation',
-    shock: shock + 3,
-    eyebrows: 'raised'
-}
+[javascript]
+    write(engine.story.passageNamed('lk : go - example').source)
+[continue]
 ```
 
 for example, here's one : 
-{
-    lk: 'reveal',
-    dest: 'some revelation',
-    shock: shock + 3,
-    eyebrows: 'raised'
-}
+{ embed passage : 'lk : reveal - example' }
 
 which renders : 
 ```html
-{
-    lk: 'reveal',
-    dest: 'some revelation',
-    shock: shock + 3,
-    eyebrows: 'raised'
-}
+{ embed passage : 'lk : reveal - example' }
 ```
 
 on click, the link will first check `engine.actions.stateUpdates['lk:reveal1']` which, in this case, holds the following javascript object :
@@ -42,3 +29,11 @@ the object will be merged with the sate before loading the next passage.
 
 :: some revelation
 wow much revealed 🐕
+
+:: lk : reveal - example
+{
+    lk: 'reveal',
+    dest: 'some revelation',
+    shock: shock + 3,
+    eyebrows: 'raised'
+}

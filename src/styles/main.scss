@@ -4,6 +4,9 @@
 @import './inventory/inventory.scss';
 @import './draw/circle.scss';
 @import './UI/page.scss';
+@import './choices/choice.scss';
+
+@import './scene/scene.scss';
 
 @import './code/format.scss';
 
@@ -13,4 +16,10 @@ body {
 
 [draggable="true"] {
     cursor: grab;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

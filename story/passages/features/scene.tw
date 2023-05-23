@@ -1,0 +1,62 @@
+:: scene modifier
+## scene modifier
+
+The scene modifier splits a the content into sub sections of which you control the classes. In the `[scene]` modifier, you define sections with `--(classes):content` where the `classes` are separated with spaces and the content can be markdown and hold inserts. for example `--(blue left mom):you need to come home **NOW**`
+
+take this example :
+```md
+[javascript]
+write(engine.story.passageNamed('scene modifier : example').source)
+[continue]
+```
+
+renders as this :
+```html
+{ embed passage:'scene modifier : example'}
+```
+
+which shows up like this:
+<blockquote>
+
+_the example below has a lot of custom css applied to it, you'll have to do the same for your story. For reference check out `src/styles/scene` in sass_
+
+</blockquote>
+
+{ embed passage:'scene modifier : example'}
+
+You can also add classes to the `scene` section by adding them after the modifier, like `[scene phone glitch] ... [continue]` will generate :
+```html
+<section class="scene phone glitch"> ... </section>
+```
+
+:: scene modifier : example
+[scene]
+--(yubaba character tired left): Aogaeru, did you fill in your timesheet this week?
+--(aogaeru character right): Ah well, I forgot actually, I ... hum ...
+--(description):Yubaba's face quickly turned red, first foam forming on her lower lip and soon fire coming out from between her teeth, she bursts out : 
+--(yubaba character angry left): **HOW MANY TIMES DO I HAVE TO TELL YOU?** HUH?! {
+    reveal link: 'tell me, how many times?!',
+    text: "36 times this year already! that's how many times!!!"
+}
+[continue]
+
+[choices reveal]
+[[say that you are sorry -> scene modifier : sorry -> sorry: true, beautiful: 'damn right']]
+[[defend yourself -> scene modifier : defend -> sorry: false]]
+[continue]
+
+:: scene modifier : sorry
+[scene]
+--(aogaeru character right choice): I'm sorry ... I really am, it won't happen again, I swear!
+--(description):With flames now flowing from underneath her eyes, her ears blowing steam she opens her mouth wide and screams
+--(yubaba character angry left): **YOU HAVE SAID THAT ALREADY YOU INCOMPETENT BATRACIAN**, I'll have you removed from this establishemnt by the end of the night. Get your things and go now.
+--(aogaeru character right): but, I...
+--(yubaba character angry left): **NOW!**
+[continue]
+
+:: scene modifier : defend
+[scene]
+--(aogaeru character right choice): That's not fair, we've been working for weeks with barely any time to eat or sleep! The guests...
+--(description): The flames suddenly go out and from her mouth black fumes start pouring surrounding her face. Only her glowing golden eyes pierce through the thick cloud, a growl comes out of the cloud
+--(yubaba character angry left): what. did you just say ... _frog_?
+[continue]
